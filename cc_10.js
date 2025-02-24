@@ -43,3 +43,27 @@ const order1 = new Order(501, prod1, 2); //create an instance for the order clas
 console.log(order1.getOrderDetails()); //use the defined method in order to get information about the order
 
 console.log(prod1.getDetails()); //use the method from our last class on the new product we defined at the end of task 1 to see the effect on stock
+
+
+//Task 3: Creating an inventory class. Multiple product scenario.
+class Inventory { //create the inventory class
+    constructor() { //use the constructor to create the empty array
+        this.products = []; //create empty array of products
+    }
+
+    addProduct(product) {
+        this.products.push(product); //create a method that takes the specified input and adds it to the products array
+    }
+
+    listProducts() {
+        console.log("Products:");
+        this.products.forEach(prod => {
+            console.log(prod.getDetails());
+        }); //a method starting with the title "Products:", then for each instance of the products array, it will get the product details from the product array
+        }
+    
+}
+
+const inventory = new Inventory();
+inventory.addProduct(prod1);
+inventory.listProducts(); //test data
