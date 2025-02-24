@@ -49,6 +49,7 @@ console.log(prod1.getDetails()); //use the method from our last class on the new
 class Inventory { //create the inventory class
     constructor() { //use the constructor to create the empty array
         this.products = []; //create empty array of products
+        this.orders = []; //Task 4
     }
 
     addProduct(product) {
@@ -60,10 +61,35 @@ class Inventory { //create the inventory class
         this.products.forEach(prod => {
             console.log(prod.getDetails());
         }); //a method starting with the title "Products:", then for each instance of the products array, it will get the product details from the product array
-        }
+     }
+
+    placeOrder(orderID, product, quantity){
+        if (product.stock >= quantity) {
+            const order = new Order(orderID, product, quantity);
+            this.orders.push(order);
+         } else {
+            console.log(`Insufficient stock.`);
+         }
+    }
+
+    listOrders() { //Task 4: initialize new 
+        console.log("Orders:");
+        const orderDetails = this.orders.map( order => order.getOrderDetails());
+        console.log(orderDetails.join(`\n`));
+    }
     
 }
 
 const inventory = new Inventory();
 inventory.addProduct(prod1);
 inventory.listProducts(); //test data
+
+
+//Task 4: Implementing Order Management. Multiple order scenario.
+
+inventory.placeOrder(601, prod1, 2);
+inventory.listOrders();
+console.log(prod1.getDetails());
+
+
+//Task 5: Implementing Product Restocking. Store restocking scenario.
